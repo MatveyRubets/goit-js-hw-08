@@ -18,7 +18,7 @@ function onSaveInfo(e) {
 function populateForm() {
   const savedMessage = localStorage.getItem(SAVED_KEY);
 
-  if (SAVED_KEY !== null) {
+  if (savedMessage !== null) {
     const localEmail = JSON.parse(savedMessage).email;
     const localMessage = JSON.parse(savedMessage).message;
 
