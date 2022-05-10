@@ -1,5 +1,3 @@
-import throttle from 'lodash.throttle';
-
 const SAVED_KEY = 'feedback-form-state';
 
 const refs = {
@@ -8,12 +6,10 @@ const refs = {
   textarea: document.querySelector('.feedback-form textarea'),
 };
 
-function onSaveInfo(e) {
-  const messageInfo = {
-    email: e.currentTarget.elements.email.value,
-    message: e.currentTarget.elements.message.value,
-  };
+const messageInfo = {};
 
+function onSaveInfo(e) {
+  messageInfo[e.target.name] = e.target.value;
   localStorage.setItem(SAVED_KEY, JSON.stringify(messageInfo));
 }
 
@@ -41,5 +37,5 @@ function onSubmitForm(e) {
   localStorage.removeItem(SAVED_KEY);
 }
 
-refs.form.addEventListener('input', throttle(onSaveInfo, 500));
+refs.form.addEventListener('input', onSaveInfo);
 refs.form.addEventListener('submit', onSubmitForm);
