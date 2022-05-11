@@ -1,3 +1,4 @@
+import throttle from 'lodash.throttle';
 const SAVED_KEY = 'feedback-form-state';
 
 const refs = {
@@ -37,5 +38,5 @@ function onSubmitForm(e) {
   localStorage.removeItem(SAVED_KEY);
 }
 
-refs.form.addEventListener('input', onSaveInfo);
+refs.form.addEventListener('input', throttle(onSaveInfo, 500));
 refs.form.addEventListener('submit', onSubmitForm);
